@@ -19,6 +19,9 @@ First, the Rimworld savegame file (extension: `.rws`) must be loaded. The first 
 
 One your savegame is loaded, the 2nd button will export the current map roof tile configuration as a grayscale 8-bit bitmap (`.bmp`) file. Each pixel in this exported image is a cell in your map. 
 
+![Example output](data/screenshot2.png)
+
+
 Example output for a 250x250 map:
 
 ![Example output](data/original.bmp)
@@ -39,7 +42,12 @@ So assuming that I want to close in the open space in the south-east part of the
 
 Next, I would return to the dialog, and press the 3rd button labeled ("load edited map image"), and load the edited bitmap file.
 
+![Example output](data/screenshot3.png)
+
 Finally, I can export the savegame with the new roof data inserted by pressing the last button, and choosing a location for it (the Rimworld save game directory).
+
+![Example output](data/screenshot4.png)
+
 
 Notes
 -------
@@ -63,3 +71,11 @@ As noted in the original reddit post, the position in the overall string represe
 Originally i was going to make a web-based service that would let users upload save files, present a web-based editor, and would then download the resulting edited savegame. This is 100% possible, but would be pretty expensive in terms of bandwidth to host considering the size of the savegame files. 
 
 The offline editing-a-bitmap-with-GIMP process was really easy to make too. I'm open to other approaches too.
+
+Software
+----------
+This tool was written with Python 2, using the `numpy` and `pillow` libraries.
+Python 3 would not be too difficult to do. I went with Py2 because I knew I could play it fast and loose with bytes and strings, which is really the core of what this program is doing.
+
+I'll happily accept a pull request for Py3 support, as long as it can pass my two basic CI regression tests.
+
