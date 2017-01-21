@@ -111,8 +111,6 @@ class RimMapRoof(object):
         im = Image.fromarray(data, mode='L')
         im.save(fn)
 
-        #imsave(fn, rm.roof_array[::-1])
-
     def read_image(self, fn):
         im = Image.open(fn)
         im = im.convert('L')

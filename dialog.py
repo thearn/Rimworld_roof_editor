@@ -9,7 +9,6 @@ class TkFileDialogExample(Tkinter.Frame):
 
     Tkinter.Frame.__init__(self, root)
 
-    # options for buttons
     button_opt = {'fill': Tkconstants.BOTH, 'padx': 5, 'pady': 5}
 
     self.b1 = Tkinter.Button(self, text='Load save game file', command=self.get_save_filename)
@@ -41,8 +40,6 @@ class TkFileDialogExample(Tkinter.Frame):
     for b in [self.b1, self.b2, self.b3, self.b4]:
         pass#b.pack(**button_opt)
 
-
-    # define options for opening a save game
     self.game_file_opt = options = {}
     options['defaultextension'] = '.rws'
     options['filetypes'] = [('all files', '.*'), ('text files', '.rws')]
@@ -59,7 +56,6 @@ class TkFileDialogExample(Tkinter.Frame):
 
   def get_save_filename(self):
 
-    # get filename
     filename = tkFileDialog.askopenfilename(**self.game_file_opt)
 
     self.map = RimMapRoof(filename)
@@ -71,7 +67,6 @@ class TkFileDialogExample(Tkinter.Frame):
 
   def save_image(self):
 
-    # get filename
     filename = tkFileDialog.asksaveasfilename(**self.im_file_opt)
     if filename == '':
         return
@@ -80,7 +75,6 @@ class TkFileDialogExample(Tkinter.Frame):
 
   def load_image(self):
 
-    # get filename
     filename = tkFileDialog.askopenfilename(**self.im_file_opt)
     if filename == '':
         return
@@ -89,7 +83,6 @@ class TkFileDialogExample(Tkinter.Frame):
 
   def write_savegame(self):
 
-    # get filename
     filename = tkFileDialog.asksaveasfilename(**self.game_file_opt)
     if filename == '':
         return
