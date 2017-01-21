@@ -1,7 +1,7 @@
 import Tkinter, Tkconstants, tkFileDialog
-#import zlib,base64
+import zlib,base64
 from rim_map_roof import RimMapRoof
-#from PIL import Image, ImageTk
+from PIL import Image, ImageTk
 
 class TkFileDialogExample(Tkinter.Frame):
 
@@ -98,12 +98,12 @@ class TkFileDialogExample(Tkinter.Frame):
 
 if __name__=='__main__':
 
-  #icon=zlib.decompress(base64.b64decode('eJxjYGAEQgEBBiDJwZDBy'
-  #'sAgxsDAoAHEQCEGBQaIOAg4sDIgACMUj4JRMApGwQgF/ykEAFXxQRc='))
+  icon=zlib.decompress(base64.b64decode('eJxjYGAEQgEBBiDJwZDBy'
+  'sAgxsDAoAHEQCEGBQaIOAg4sDIgACMUj4JRMApGwQgF/ykEAFXxQRc='))
   
   root = Tkinter.Tk()
-  #image=ImageTk.PhotoImage(data=icon)
-  #root.tk.call('wm', 'iconphoto', root._w, image)
+  image=ImageTk.PhotoImage(data=icon)
+  root.tk.call('wm', 'iconphoto', root._w, image)
   root.wm_title("Rimworld roof editor")
   TkFileDialogExample(root).pack()
   root.mainloop()
