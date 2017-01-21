@@ -6,7 +6,7 @@ virtualenv:
   system_site_packages: true
 
 before_install:
-  sudo apt-get install -qq python-numpy python-imaging
+  - sudo apt-get install -qq python-numpy python-imaging
 
- script:
-  python test_rw.py 
+script:
+  - python test_rw.py 

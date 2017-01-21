@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thearn/Rimworld_roof_editor.svg?branch=master)](https://travis-ci.org/thearn/Rimworld_roof_editor)
+
 Rimworld Savegame Roof-type Editor
 ====================================
 
