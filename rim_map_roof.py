@@ -1,5 +1,5 @@
 import numpy as np
-import base64, shutil
+import base64, shutil, zlib
 from PIL import Image
 
 bytes2sky_type = {}
@@ -54,34 +54,33 @@ class RimMapRoof(object):
                         post += line
         pre += '\t\t\t\t<roofGrid>\r\n\t\t\t\t\t<roofs>\r\n'
 
+
         self.roof_array = np.zeros(self.mapsize).flatten()
         self.pre_roof = pre
         self.post_roof = post
 
-        code = code[2:-1]
+        if code[1] == '<roofsDeflate>':
+          codes = zlib.decompress(''.join(code[2:-1]).decode('base64'), -zlib.MAX_WBITS)
+          cells = [codes[k:k+2] for k in range(0,len(codes),2)]
+          idx = 0
+          for cell in cells:
+            self.roof_array[idx] = bytes2sky_type[cell]
+            idx += 1
+        else: 
+          code = code[2:-1]
+          top = ''.join(code)
 
-        top = ''.join(code)
+          chunks, chunk_size = len(top), 8
+          codes = [ top[i:i+chunk_size] for i in range(0, chunks, chunk_size) ]
 
-        chunks, chunk_size = len(top), 8
-        codes = [ top[i:i+chunk_size] for i in range(0, chunks, chunk_size) ]
+          idx = 0
+          for c in codes:
+              c = base64.b64decode(c)
+              cells = [c[k:k+2] for k in range(0,len(c),2)]
 
-        self.map_code_counts = {}
-        self.numcells = 0
-
-        idx = 0
-        for c in codes:
-            c = base64.b64decode(c)
-            cells = [c[k:k+2] for k in range(0,len(c),2)]
-
-            for cell in cells:
-                if cell in self.map_code_counts:
-                    self.map_code_counts[cell] += 1
-                else:
-                    self.map_code_counts[cell] = 1
-
-                self.roof_array[idx] = bytes2sky_type[cell]
-                idx += 1
-                self.numcells += 1
+              for cell in cells:
+                  self.roof_array[idx] = bytes2sky_type[cell]
+                  idx += 1
         self.roof_array = self.roof_array.reshape(self.mapsize)
 
     def array2code(self):

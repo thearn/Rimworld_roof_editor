@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.org/thearn/Rimworld_roof_editor.svg?branch=master)](https://travis-ci.org/thearn/Rimworld_roof_editor)
 
+This is a (hopefully) temporary repo for a B18 compatible version of thearn's Rimworld Savegame Roof-type Editor:
+https://github.com/thearn/Rimworld_roof_editor
+
 Rimworld Savegame Roof-type Editor
 ====================================
 
